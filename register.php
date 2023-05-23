@@ -18,7 +18,7 @@
 <?php
     if($_SERVER["REQUEST_METHOD"] == "POST"){
                             //  host        user      password  database
-        $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysql_error()); // Connection to a database server.
+        $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connection to a database server.
         $username = mysqli_real_escape_string($mysql, $_POST['username']);
         $password = mysqli_real_escape_string($mysql, $_POST['password']);
         $bool = true;

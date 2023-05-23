@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysql_error());
+$mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error());
 
 $username = mysqli_real_escape_string($mysql, $_POST['username']);
 $password = mysqli_real_escape_string($mysql, $_POST['password']);
