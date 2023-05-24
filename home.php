@@ -24,9 +24,28 @@
             <tr>
                 <th>Id</th>
                 <th>Details</th>
+                <th>Post Time</th>
+                <th>Edit Time</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Public Post</th>
             </tr>
+            <?php
+                $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error());
+                
+                $query = mysqli_query($mysql, "Select * from list");
+                while($row = mysqli_fetch_array($query)) {
+                    print "<tr>";
+                        print '<td align="center">' . $row['id'] . "</tr>";
+                        print '<td align="center">' . $row['details'] . "</td>";
+                        print '<td align="center">' . $row['date_posted'] . " - " . $row['time_posted'] . "</td>";
+                        print '<td align="center">' . $row['date_edited'] . " - " . $row['time_edited'] . "</td>";
+                        print '<td align="center"><a href="edit.php">edit</a> </td>';
+                        print '<td align="center"><a href="delete.php">delete</a> </td>';
+                        print '<td align="center">' . $row['public'] . "</td>";
+                    print "</tr>";
+                }
+            ?>
         </table>
     </body>
 </html>
