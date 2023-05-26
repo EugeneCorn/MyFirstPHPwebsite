@@ -26,14 +26,13 @@
                 <th>Public Post</th>
             </tr>
             <?php
-                if(!empty($def['id'])) {
+                if(!empty($_GET['id'])) {
                     $id = $_GET['id'];
                     $_SESSION['id'] = $id;
-                    global $id_exists;
                     $id_exists = true;
                     
                     $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server
-                    $query = mysqli_query($mysql, "SELECT * FROM LIST"); // SQL Query
+                    $query = mysqli_query($mysql, "SELECT * FROM list"); // SQL Query
                     $count = mysqli_num_rows($query);
                     if($count > 0) {
                         while($row = mysqli_fetch_array($query)) {
