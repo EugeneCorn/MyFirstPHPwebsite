@@ -36,12 +36,12 @@
                 $query = mysqli_query($mysql, "Select * from list");
                 while($row = mysqli_fetch_array($query)) {
                     print "<tr>";
-                        print '<td align="center">' . $row['id'] . "</tr>";
+                        print '<td align="center">' . $row['id'] . "</td>";
                         print '<td align="center">' . $row['details'] . "</td>";
                         print '<td align="center">' . $row['date_posted'] . " - " . $row['time_posted'] . "</td>";
                         print '<td align="center">' . $row['date_edited'] . " - " . $row['time_edited'] . "</td>";
-                        print '<td align="center"><a href="edit.php">edit</a> </td>';
-                        print '<td align="center"><a href="delete.php">delete</a> </td>';
+                        print '<td align="center"> <a href="edit.php?id=' . $row['id'] . '">edit</a> </td>';
+                        print '<td align="center"> <a href="delete.php?id=' . $row['id'] . '">delete</a> </td>';
                         print '<td align="center">' . $row['public'] . "</td>";
                     print "</tr>";
                 }
