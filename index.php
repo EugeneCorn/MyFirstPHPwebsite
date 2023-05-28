@@ -8,13 +8,27 @@
         ?> </br> </br>
         <a href="login.php"> Click here to log in </a> <br/>
         <a href="register.php"> Click here to register </a> <br/>
-        <h1> Images from the local ConexWest website</h1> <br/>
-        <img src="http://conexwest2022-2.localhost/sites/default/files/styles/category_sm_max/public/2019-08/downloadfile-4%20%28Small%29_1.webp" href="Container" /> <br/>
-        <img src="http://conexwest2022-2.localhost/sites/default/files/styles/category_sm_max/public/2019-08/downloadfile-4%20%28Small%29_1.png" href="Container" /> <br/>
-        <img src="http://conexwest2022-2.localhost/sites/default/files/2019-08/downloadfile-4%20%28Small%29_1.png" href="Container_wm" /> <br/>
-        <h1> Images from the DevBranch Portainer ConexWest website </h1>
-        <img src="https://conexwest2022-2.devbranch.work/sites/default/files/2019-08/downloadfile-4%20%28Small%29_1.png" href="Conrtainer" /> <br />
-        <img src="https://DevBranch:DevBranch@conexwest2022-2.devbranch.work/sites/default/files/styles/category_sm_max/public/2019-08/downloadfile-4%20%28Small%29_1.png?itok=pNOHdp_4" href="Container" /> <br />
-        <img src="https://conexwest2022-2.devbranch.work/sites/default/files/styles/gallery_xs_max/public/2019-08/downloadfile-4%20%28Small%29_1.webp?itok=wA8QbsmT" href="Container" /> <br />
     </body>
+    <br />
+    <h2 align="center">List</h2>
+    <table width="100%" border="1px">
+        <tr>
+                <th>Id</th>
+                <th>Details</th>
+                <th>Post Time</th>
+                <th>Edit Time</th>
+        </tr>
+        <?php
+            $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to databse.
+            $query = mysqli_query($mysql, "SELECT * FROM list WHERE public='yes'"); // SQL Query.
+            while($row = mysqli_fetch_array($query)) {
+                print "<tr>";
+                    print '<td align="center">' . $row['id'] . "</td>";
+                    print '<td align="center">' . $row['details'] . "</td>";
+                    print '<td align="center">' . $row['date_posted'] . " " . $row['time_posted'] .  "</td>";
+                    print '<td align="center">' . $row['date_edited'] . " " . $row['time_edited'] .  "</td>";
+                print "</tr>";
+            }
+        ?>
+    </table>
 </html>

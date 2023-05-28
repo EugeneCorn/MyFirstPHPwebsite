@@ -8,11 +8,11 @@
     } else {
         header("location: index.php"); // Redirects if user is not logged in.
     }
-    $user = $_SESSION['user']; //Assigns user value.
+    $user = $_SESSION['user']; // Assigns user value.
     ?>
     <body>
         <h2>Home Page</h2>
-        <p>Hello <?php Print "$user"?>!</p> <!-- Displays user's nname -->
+        <p>Hello <?php Print "$user"?>!</p> <!-- Displays user's name. -->
         <a href="logout.php">Click here to go logout</a><br/><br/>
         <form action="add.php" method="POST">
             Add more to list: <input type="text" name="details" /> <br/>
@@ -32,8 +32,8 @@
             </tr>
             <?php
                 $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error());
-                
                 $query = mysqli_query($mysql, "Select * from list");
+                
                 while($row = mysqli_fetch_array($query)) {
                     print "<tr>";
                         print '<td align="center">' . $row['id'] . "</td>";
@@ -41,11 +41,19 @@
                         print '<td align="center">' . $row['date_posted'] . " - " . $row['time_posted'] . "</td>";
                         print '<td align="center">' . $row['date_edited'] . " - " . $row['time_edited'] . "</td>";
                         print '<td align="center"> <a href="edit.php?id=' . $row['id'] . '">edit</a> </td>';
-                        print '<td align="center"> <a href="delete.php?id=' . $row['id'] . '">delete</a> </td>';
+                        print '<td align="center"> <a href="#" onclick="myFunction('.$row['id'].')">delete</a> </td>';
                         print '<td align="center">' . $row['public'] . "</td>";
                     print "</tr>";
                 }
             ?>
         </table>
+        <script>
+            function myFunction(id) {
+                var r = confirm("Are you sure you want to delete this record?");
+                if(r == true) {
+                    window.location.assign("delete.php?id=" + id);
+                }
+            }
+        </script>
     </body>
 </html>

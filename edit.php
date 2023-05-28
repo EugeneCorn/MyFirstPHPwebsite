@@ -32,7 +32,7 @@
                     $id_exists = true;
                     
                     $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server
-                    $query = mysqli_query($mysql, "SELECT * FROM list"); // SQL Query
+                    $query = mysqli_query($mysql, "SELECT * FROM list Where id='$id'"); // SQL Query
                     $count = mysqli_num_rows($query);
                     if($count > 0) {
                         while($row = mysqli_fetch_array($query)) {
@@ -56,7 +56,7 @@
             print '
             <form action="edit.php" method="post">
                 Enter new detail: <input type="text" name="details"/><br/>
-                public post? <input type="checkbox name="public[]" value="yes"/><br/>
+                public post? <input type="checkbox" name="public[]" value="yes"/><br/>
                 <input type="submit" value="Update List"/>
             </form>
             ';
@@ -66,3 +66,24 @@
         ?>
     </body>
 </html>
+
+<?php
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server
+        $details = mysqli_real_escape_string($mysql, $_POST['details']);
+        $public = "no";
+        $id = $_SESSION['id'];
+        $time = date("H:i:s"); // Time.
+        $date = date("M d, Y"); // Date.
+
+        foreach($_POST['public'] as $list) {
+            if($list != null) {
+                $public = "yes";
+            }
+        }
+
+        mysqli_query($mysql, "UPDATE list SET details='$details', public='$public', date_edited='$date', time_edited='$time' WHERE id='$id'");
+        header("location:home.php");
+    }
+?>
