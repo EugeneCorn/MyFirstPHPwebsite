@@ -4,16 +4,15 @@
     </head>
     <?php
     session_start();    // Starts the session.
-    if($_SESSION['user']){ // Checks if the user is logged in
+    if($_SESSION['user']){ // Checks if the user is logged in.
     } else {
-        header("location: index.php"); // Redirects if user is not logged in
+        header("location: index.php"); // Redirects if user is not logged in.
     }
-    $user = $_SESSION['user']; // Assigns user value
-    $id_exists = false;
+    $user = $_SESSION['user']; // Assigns user value.
     ?>
     <body>
         <h2>Home Page</h2>
-        <p>Hello <?php Print "$user"?>!</p> <!-- Display's user name-->
+        <p>Hello <?php Print "$user"?>!</p> <!-- Display's user name. -->
         <a href="logout.php">Click here to go logout</a><br/><br/>
         <a href="home.php">Return to home page</a>
         <h2 align="center">Currently Selected</h2>
@@ -31,8 +30,8 @@
                     $_SESSION['id'] = $id;
                     $id_exists = true;
                     
-                    $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server
-                    $query = mysqli_query($mysql, "SELECT * FROM list Where id='$id'"); // SQL Query
+                    $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server.
+                    $query = mysqli_query($mysql, "SELECT * FROM list WHERE id='$id'"); // SQL Query.
                     $count = mysqli_num_rows($query);
                     if($count > 0) {
                         while($row = mysqli_fetch_array($query)) {
@@ -68,9 +67,8 @@
 </html>
 
 <?php
-
     if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server
+        $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error()); // Connect to MySQL server.
         $details = mysqli_real_escape_string($mysql, $_POST['details']);
         $public = "no";
         $id = $_SESSION['id'];

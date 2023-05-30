@@ -32,7 +32,7 @@
             </tr>
             <?php
                 $mysql = mysqli_connect("mariadb", "drupal", "drupal", "drupal") or die(mysqli_error());
-                $query = mysqli_query($mysql, "Select * from list");
+                $query = mysqli_query($mysql, "SELECT * FROM list");
                 
                 while($row = mysqli_fetch_array($query)) {
                     print "<tr>";

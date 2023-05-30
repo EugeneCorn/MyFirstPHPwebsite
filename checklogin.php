@@ -7,7 +7,7 @@ $username = mysqli_real_escape_string($mysql, $_POST['username']);
 $password = mysqli_real_escape_string($mysql, $_POST['password']);
 $bool = true;
 
-$query = mysqli_query($mysql, "Select * from users WHERE username='$username'"); // Query the users table 
+$query = mysqli_query($mysql, "SELECT * FROM users WHERE username='$username'"); // Query the users table .
 
 $exists = mysqli_num_rows($query); //Checks if username exists.
 $table_users = "";

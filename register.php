@@ -23,13 +23,13 @@
         $password = mysqli_real_escape_string($mysql, $_POST['password']);
         $bool = true;
 
-        $query = mysqli_query($mysql, "Select * from users"); // Query the users table
-        while($row = mysqli_fetch_array($query)) // display all rows from query
+        $query = mysqli_query($mysql, "SELECT * FROM users"); // Query the users table.
+        while($row = mysqli_fetch_array($query)) // display all rows from query.
         {
             $table_users == $row['username'];   // The first username row
                                                 // is passed on to $table_users,
                                                 // and so on until he query is finished.
-            if($usernmae == $table_users) {     // Checks if there are any matching fields
+            if($usernmae == $table_users) {     // Checks if there are any matching fields.
                 $bool = false;
                 print '<script>alert("Username has been taken!");</script>';        // Promts the user.
                 print '<script>window.location.assign("register.php");</script>';   // Redirects to register.php.
